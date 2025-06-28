@@ -4,16 +4,6 @@
  */
 package modelo;
 
-/**
- *
- * @author ivanl
- */
-@FunctionalInterface
 public interface IDescuentoStrategy {
-        /**
-     * Calcula el monto de descuento a aplicar.
-     * @param pedido Pedido sobre el cual calcular el descuento
-     * @return valor del descuento
-     */
     double calcularDescuento(Pedido pedido);
 }

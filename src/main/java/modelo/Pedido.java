@@ -3,14 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelo;
+
 import java.util.ArrayList;
 import java.util.List;
-/**
- *
- * @author ivanl
- */
-public class Pedido {
-        private List<IItemMenu> items = new ArrayList<>();
+
+public class Pedido implements IAgregado<IItemMenu> {
+    private List<IItemMenu> items = new ArrayList<>();
     private IEstadoPedido estado;
     private IDescuentoStrategy descuento;
     private Notificador notificador = new Notificador();
@@ -96,5 +94,10 @@ public class Pedido {
             this.estado   = estado;
             this.descuento= descuento;
         }
+    }
+
+    @Override
+    public IIterator<IItemMenu> crearIterador() {
+        return new IteradorItems(items);
     }
 }

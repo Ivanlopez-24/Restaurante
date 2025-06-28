@@ -1,0 +1,3 @@
+max_mesas=20
+hora_apertura=08:00
+hora_cierre=22:00

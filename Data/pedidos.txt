@@ -1,0 +1,2 @@
+Pedido1,Plato1;Bebida2;Postre1,En Preparación
+Pedido2,Plato3;Bebida1,Pendiente

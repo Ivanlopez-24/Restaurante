@@ -1,0 +1,6 @@
+Plato1,Ensalada César,7.50
+Plato2,Spaghetti Boloñesa,9.00
+Plato3,Pollo a la Parrilla,10.50
+Bebida1,Agua Mineral,2.00
+Bebida2,Jugo de Naranja,3.00
+Postre1,Tarta de Manzana,4.00

@@ -1,6 +1,6 @@
 package factory;
 
-import model.Producto;
+import modelo.Producto;
 
 public interface MenuFactory {
     Producto crearPlato(String nombre, double precio);

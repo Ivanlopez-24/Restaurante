@@ -7,7 +7,6 @@ import modelo.ProxyAccesoDatos;
 import vista.PedidoView;
 import factory.PlatoFactory;
 import factory.BebidaFactory;
-import factory.PostreFactory;
 import factory.ProductoFactory;
 
 import java.awt.event.ActionEvent;
@@ -84,8 +83,6 @@ public class PedidoController {
                 return new PlatoFactory();
             case "bebida":
                 return new BebidaFactory();
-            case "postre":
-                return new PostreFactory();
             default:
                 return null;
         }

@@ -1,7 +1,7 @@
-package controller;
+package controlador;
 
 import factory.ProductoFactory;
-import model.Producto;
+import modelo.Producto;
 
 public class MenuController {
     private ProductoFactory productoFactory;
@@ -11,6 +11,6 @@ public class MenuController {
     }
 
     public Producto crearProducto(String nombre, double precio) {
-        return productoFactory.crearProducto(nombre, precio);
+        return (Producto) productoFactory.crearProducto(nombre, precio);
     }
 }

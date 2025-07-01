@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public class PedidoView extends JFrame {
-    private JComboBox<IItemMenu> comboPlatos;
+    public JComboBox<IItemMenu> comboPlatos;
     private JButton btnAgregar;
     private JTextArea areaPedido;
     private JLabel lblTotal;

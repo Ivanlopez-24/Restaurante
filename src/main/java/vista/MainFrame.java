@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import controlador.MenuController;
 import factory.PlatoFactory;
-import model.Producto;
+import modelo.Producto;
 
 public class MainFrame extends JFrame {
     private MenuController menuController;

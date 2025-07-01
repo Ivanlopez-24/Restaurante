@@ -1,5 +1,5 @@
 // MainApp.java - Clase principal para integrar Modelo, Vista y Controlador
-package main;
+
 
 import modelo.Pedido;
 import vista.PedidoView;

@@ -4,10 +4,6 @@
  */
 package modelo;
 
-/**
- *
- * @author ivanl
- */
 public class Bebida implements IItemMenu {
     private String nombre;
     private double precio;
@@ -16,15 +12,18 @@ public class Bebida implements IItemMenu {
         this.nombre = nombre;
         this.precio = precio;
     }
-    
+
     @Override
     public double getPrecio(){
         return precio;
     }
-    public String getDescripcion(){
+
+    @Override
+    public String descripcion(){
         return nombre; 
     }
 
+    @Override
     public String getNombre() {
         return nombre;
     }
@@ -36,6 +35,4 @@ public class Bebida implements IItemMenu {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-    
-    
 }

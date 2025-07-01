@@ -13,7 +13,7 @@ public class FactoriaItaliana implements IFactoriaPlatos {
     @Override
     public IItemMenu crearPlatoPrincipal() {
         // Ejemplo: pasta a la Bolognesa
-        return new Plato("Pasta Bolognesa", 35000);
+        return (IItemMenu) new Plato("Pasta Bolognesa", 35000);
     }
 
     @Override

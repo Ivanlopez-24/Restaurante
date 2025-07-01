@@ -13,7 +13,7 @@ public class FactoriaMexicana implements IFactoriaPlatos {
     @Override
     public IItemMenu crearPlatoPrincipal() {
         // Ejemplo: tacos al pastor
-        return new Plato("Tacos al Pastor", 30000);
+        return (IItemMenu) new Plato("Tacos al Pastor", 30000);
     }
 
     @Override

@@ -23,4 +23,9 @@ public class MenuSimple implements IItemMenu {
     public String descripcion() {
         return nombre + " - Precio: " + precio;
     }
+
+    @Override
+    public String toString() {
+        return descripcion();
+    }
 }

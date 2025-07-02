@@ -1,90 +1,65 @@
-//- Controlador para manejar eventos de PedidoView y cargar menú desde archivo
 package controlador;
 
 import modelo.IItemMenu;
-import modelo.Pedido;
-import modelo.ProxyAccesoDatos;
+import modelo.fachada.FacadeRestaurante;
 import vista.PedidoView;
-import factory.PlatoFactory;
-import factory.BebidaFactory;
-import factory.ProductoFactory;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 public class PedidoController {
-    private Pedido modelo;
-    private PedidoView vista;
+    private FacadeRestaurante facade;
+    private PedidoView view;
     private List<IItemMenu> menuItems;
 
-    public PedidoController(Pedido modelo, PedidoView vista) {
-        this.modelo = modelo;
-        this.vista = vista;
-        this.menuItems = cargarMenuDesdeArchivo("Data/menu.txt");
+    public PedidoView getView() {
+        return view;
+    }
 
-        // Actualizar combo con menú cargado
-        vista.comboPlatos.setModel(new javax.swing.DefaultComboBoxModel<>(menuItems.toArray(new IItemMenu[0])));
+    public PedidoController(FacadeRestaurante facade, PedidoView view, List<IItemMenu> menuItems) {
+        this.facade = facade;
+        this.view = view;
+        this.menuItems = menuItems;
 
-        // Listener para botón agregar
-        this.vista.agregarListenerAgregar(new ActionListener() {
+        // Inicializar vista con menú pasado desde MainApp
+        this.view.comboPlatos.setModel(new javax.swing.DefaultComboBoxModel<>(menuItems.toArray(new IItemMenu[0])));
+
+        // Agregar listener para botón agregar
+        this.view.agregarListenerAgregar(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                IItemMenu plato = vista.getPlatoSeleccionado();
-                if (plato != null) {
-                    modelo.agregarItem(plato);
-                    actualizarVista();
-                }
+                agregarItemAlPedido();
             }
         });
 
         actualizarVista();
     }
 
-    private void actualizarVista() {
-        StringBuilder sb = new StringBuilder();
-        for (IItemMenu item : modelo.getItems()) {
-            sb.append(item.getNombre()).append(" - $").append(item.getPrecio()).append("\n");
+    private void agregarItemAlPedido() {
+        IItemMenu item = view.getPlatoSeleccionado();
+        if (item != null) {
+            if (item instanceof modelo.MenuSimple) {
+                facade.agregarItemAlPedido((modelo.MenuSimple) item);
+            } else if (item instanceof modelo.MenuCompuesto) {
+                facade.agregarMenuCompuestoAlPedido((modelo.MenuCompuesto) item);
+            }
+            actualizarVista();
+            view.actualizarMensajes(""); // Limpiar mensajes al agregar ítem
         }
-        vista.actualizarPedido(sb.toString(), modelo.getPrecioTotal());
     }
 
-    private List<IItemMenu> cargarMenuDesdeArchivo(String rutaArchivo) {
-        List<IItemMenu> menu = new ArrayList<>();
-        ProxyAccesoDatos proxy = new ProxyAccesoDatos();
-        proxy.abrirArchivo(rutaArchivo);
-        String datos = proxy.leerDatos();
-        proxy.cerrarArchivo();
-
-        if (datos != null && !datos.isEmpty()) {
-            String[] lineas = datos.split("\n");
-            for (String linea : lineas) {
-                String[] partes = linea.split(",");
-                if (partes.length == 4) {
-                    String tipo = partes[0].trim();
-                    String nombre = partes[1].trim();
-                    double precio = Double.parseDouble(partes[2].trim());
-                    // Se puede agregar más campos si es necesario
-
-                    ProductoFactory factory = obtenerFactory(tipo);
-                    if (factory != null) {
-                        menu.add(factory.crearProducto(nombre, precio));
-                    }
-                }
+    private void actualizarVista() {
+        List<?> itemsPedido = facade.obtenerItemsPedido();
+        StringBuilder textoPedido = new StringBuilder();
+        double total = 0.0;
+        for (Object obj : itemsPedido) {
+            if (obj instanceof IItemMenu) {
+                IItemMenu item = (IItemMenu) obj;
+                textoPedido.append(item.getNombre()).append(" - $").append(item.getPrecio()).append("\n");
+                total += item.getPrecio();
             }
         }
-        return menu;
-    }
-
-    private ProductoFactory obtenerFactory(String tipo) {
-        switch (tipo.toLowerCase()) {
-            case "plato":
-                return new PlatoFactory();
-            case "bebida":
-                return new BebidaFactory();
-            default:
-                return null;
-        }
+        view.actualizarPedido(textoPedido.toString(), total);
     }
 }

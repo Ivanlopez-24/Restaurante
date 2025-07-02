@@ -35,4 +35,8 @@ public class FacadeRestaurante {
     public List<?> obtenerItemsPedido() {
         return pedidoActual.getItems();
     }
+
+    public Pedido obtenerPedidoActual() {
+        return pedidoActual;
+    }
 }

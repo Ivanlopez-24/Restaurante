@@ -8,11 +8,11 @@ import modelo.Pedido;
 public class ValidarPagoHandler extends HandlerPedido {
     @Override
     public void manejar(Pedido pedido) {
-        // Lógica para validar pago
-        System.out.println("Validando pago para el pedido...");
+        agregarMensaje("Validando pago para el pedido...");
         // Si pasa la validación, pasa al siguiente manejador
         if (siguiente != null) {
             siguiente.manejar(pedido);
+            agregarMensaje(siguiente.getMensajes());
         }
     }
 }

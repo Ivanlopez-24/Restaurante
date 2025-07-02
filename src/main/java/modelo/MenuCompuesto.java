@@ -15,6 +15,10 @@ public class MenuCompuesto implements IItemMenu {
         items.add(item);
     }
 
+    public List<IItemMenu> getItems() {
+        return items;
+    }
+
     @Override
     public String getNombre() {
         return nombre;

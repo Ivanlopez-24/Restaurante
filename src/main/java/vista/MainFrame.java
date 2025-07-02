@@ -1,10 +1,17 @@
 package vista;
 
-import javax.swing.*;
-import java.awt.*;
-import controlador.MenuController;
-import factory.PlatoFactory;
+import java.awt.BorderLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
+
 import modelo.Producto;
+import modelo.controlador.MenuController;
+import modelo.factory.PlatoFactory;
 
 public class MainFrame extends JFrame {
     private MenuController menuController;

@@ -25,6 +25,13 @@ public class Pedido implements IAgregado<IItemMenu> {
         return this;
     }
 
+    /** Limpia el pedido para iniciar uno nuevo */
+    public void limpiarPedido() {
+        items.clear();
+        estado = null;
+        descuento = null;
+    }
+
     /** Calcula el precio total, aplicando descuento si existe */
     public double getPrecioTotal() {
         double total = items.stream()
@@ -94,6 +101,17 @@ public class Pedido implements IAgregado<IItemMenu> {
             this.estado   = estado;
             this.descuento= descuento;
         }
+    }
+
+    public boolean tienePedidoAnterior() {
+        return mementoPrevio != null;
+    }
+
+    public List<IItemMenu> obtenerItemsPedidoAnterior() {
+        if (mementoPrevio != null) {
+            return new ArrayList<>(mementoPrevio.items);
+        }
+        return new ArrayList<>();
     }
 
     @Override

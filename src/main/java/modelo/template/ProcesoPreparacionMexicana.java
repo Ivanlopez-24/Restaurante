@@ -19,9 +19,9 @@ public class ProcesoPreparacionMexicana extends ProcesoPreparacion {
 
     @Override
     protected void prepararIngredientes() {
-        System.out.println("Preparando ingredientes mexicanos:");
+        modelo.Salida.println("Preparando ingredientes mexicanos:");
         for (Ingrediente ingrediente : ingredientes) {
-            System.out.println("- " + ingrediente.getNombre());
+            modelo.Salida.println("- " + ingrediente.getNombre());
         }
     }
 

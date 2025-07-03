@@ -19,9 +19,9 @@ public class ProcesoPreparacionItaliana extends ProcesoPreparacion {
 
     @Override
     protected void prepararIngredientes() {
-        System.out.println("Preparando ingredientes italianos:");
+        modelo.Salida.println("Preparando ingredientes italianos:");
         for (Ingrediente ingrediente : ingredientes) {
-            System.out.println("- " + ingrediente.getNombre());
+            modelo.Salida.println("- " + ingrediente.getNombre());
         }
     }
 

@@ -11,8 +11,16 @@ public class MenuCompuesto implements IItemMenu {
         this.nombre = nombre;
     }
 
+    public void aceptar(modelo.visitor.Visitor visitor) {
+        visitor.visitarMenuCompuesto(this);
+    }
+
     public void agregarItem(IItemMenu item) {
         items.add(item);
+    }
+
+    public IIterator<IItemMenu> crearIterador() {
+        return new IteradorMenu(items);
     }
 
     public List<IItemMenu> getItems() {
@@ -36,5 +44,10 @@ public class MenuCompuesto implements IItemMenu {
             sb.append(" - ").append(item.descripcion()).append("\n");
         }
         return sb.toString();
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
     }
 }

@@ -16,6 +16,6 @@ public abstract class ProcesoPreparacion {
     protected abstract void cocinar();
 
     protected void servir() {
-        System.out.println("Sirviendo el plato.");
+        modelo.Salida.println("Sirviendo el plato.");
     }
 }
